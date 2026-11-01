@@ -95,17 +95,42 @@
     .placeholder-note { color: var(--muted); font-style: italic; }
 
     /* Om oss */
-    .about { display: grid; gap: 2.2rem; }
-    .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
-    .photo {
-      aspect-ratio: 4 / 5; border-radius: 2px; overflow: hidden;
-      background: #fff; border: 1px solid var(--line);
-      display: grid; place-items: center;
+    .about { display: grid; gap: 2.4rem; }
+    .wrap.wide { max-width: 980px; }
+    /* Galleri: jämnt rutnät där alla rader är lika höga.
+       Stående bild = 1 ruta (3:4), liggande = 2 rutor bred, utvald bild = 2x2. */
+    .gallery-wrap { container-type: inline-size; }
+    .gallery {
+      --cols: 4; --gap: 12px;
+      display: grid; gap: var(--gap);
+      grid-template-columns: repeat(var(--cols), 1fr);
+      grid-auto-rows: calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols) * 4 / 3);
+      grid-auto-flow: dense;
     }
-    .photo img { width: 100%; height: 100%; object-fit: cover; }
-    .photo.empty span { font-style: italic; color: var(--muted); font-size: .95rem; }
-    .photo.empty { background: #fff url("assets/poppy.webp") center 38% / 22% auto no-repeat; }
-    .photo.empty span { margin-top: 55%; }
+    .gallery button {
+      all: unset; cursor: zoom-in; display: block; overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 1px 2px rgba(38,72,35,.08), 0 6px 18px rgba(38,72,35,.06);
+    }
+    .gallery button:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+    .gallery .l { grid-column: span 2; }
+    .gallery .f { grid-column: span 2; grid-row: span 2; }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .gallery button:hover img { transform: scale(1.03); }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 50; display: none;
+      background: rgba(253,251,246,.96); align-items: center; justify-content: center; padding: 4vh 4vw;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; border-radius: 14px; box-shadow: 0 10px 40px rgba(38,72,35,.18); }
+    .lightbox button {
+      all: unset; cursor: pointer; position: absolute; color: var(--ink);
+      font-size: 2rem; line-height: 1; padding: .6rem .9rem; user-select: none;
+    }
+    .lightbox .close { top: .6rem; right: .8rem; }
+    .lightbox .prev { left: .4rem; top: 50%; transform: translateY(-50%); }
+    .lightbox .next { right: .4rem; top: 50%; transform: translateY(-50%); }
     .about-text { max-width: 36em; margin: 0 auto; text-align: center; }
 
     /* Dagen */
@@ -151,8 +176,8 @@
     @media (max-width: 640px) {
       body { font-size: 1.12rem; }
       .events, .info { grid-template-columns: 1fr; }
-      .photos { grid-template-columns: repeat(2, 1fr); }
-      .photos .photo:nth-child(3) { display: none; }
+      .gallery { --cols: 2; --gap: 8px; }
+      .gallery button { border-radius: 10px; }
       nav a { font-size: .74rem; letter-spacing: .16em; }
     }
   </style>
@@ -180,19 +205,29 @@
 
   <!-- OM OSS ─────────────────────────────────────────────── -->
   <section id="om-oss">
-    <div class="wrap reveal">
+    <div class="wrap wide reveal">
       <img class="ornament" src="assets/poppy.webp" alt="">
       <h2>Om oss</h2>
       <p class="lead">Lite om hur allt började</p>
       <div class="about">
-        <!-- Byt ut en tom ruta mot en bild:
-             <figure class="photo"><img src="bilder/vi-1.jpg" alt="Matilda och Marcus"></figure> -->
-        <div class="photos">
-          <figure class="photo empty" style="margin:0"><span>Bild kommer</span></figure>
-          <figure class="photo empty" style="margin:0"><span>Bild kommer</span></figure>
-          <figure class="photo empty" style="margin:0"><span>Bild kommer</span></figure>
+        <div class="gallery-wrap">
+        <div class="gallery" id="gallery">
+          <button class="f" aria-label="Visa bild 1 i större format"><img src="bilder/vi-07-1600.jpg" data-full="bilder/vi-07-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 2 i större format"><img src="bilder/vi-01-800.jpg" data-full="bilder/vi-01-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 3 i större format"><img src="bilder/vi-03-800.jpg" data-full="bilder/vi-03-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="l" aria-label="Visa bild 4 i större format"><img src="bilder/vi-02-800.jpg" data-full="bilder/vi-02-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 5 i större format"><img src="bilder/vi-05-800.jpg" data-full="bilder/vi-05-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 6 i större format"><img src="bilder/vi-06-800.jpg" data-full="bilder/vi-06-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="l" aria-label="Visa bild 7 i större format"><img src="bilder/vi-04-800.jpg" data-full="bilder/vi-04-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="l" aria-label="Visa bild 8 i större format"><img src="bilder/vi-08-800.jpg" data-full="bilder/vi-08-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 9 i större format"><img src="bilder/vi-09-800.jpg" data-full="bilder/vi-09-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 10 i större format"><img src="bilder/vi-10-800.jpg" data-full="bilder/vi-10-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="l" aria-label="Visa bild 11 i större format"><img src="bilder/vi-11-800.jpg" data-full="bilder/vi-11-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 12 i större format"><img src="bilder/vi-12-800.jpg" data-full="bilder/vi-12-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
+          <button class="p" aria-label="Visa bild 13 i större format"><img src="bilder/vi-13-800.jpg" data-full="bilder/vi-13-1600.jpg" alt="Matilda och Marcus" loading="lazy"></button>
         </div>
-        <div class="about-text">
+        </div>
+        <div class="about-text wrap">
           <p class="placeholder-note">Här kommer vi snart berätta om hur vi träffades, vad vi gillar att göra tillsammans och varför vi ser fram emot att fira just med er.</p>
         </div>
       </div>
@@ -263,6 +298,13 @@
     </div>
   </section>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bild">
+    <button class="close" aria-label="Stäng">&times;</button>
+    <button class="prev" aria-label="Föregående">&lsaquo;</button>
+    <img alt="Matilda och Marcus">
+    <button class="next" aria-label="Nästa">&rsaquo;</button>
+  </div>
+
   <footer>
     <img src="assets/crocus.webp" alt="">
     <p>Matilda &amp; Marcus · 4.9.2027</p>
@@ -294,6 +336,32 @@
     } else {
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
     }
+
+    // Bildvisning i större format
+    (function () {
+      var imgs = Array.prototype.slice.call(document.querySelectorAll('#gallery img'));
+      var box = document.getElementById('lightbox'), big = box.querySelector('img'), i = 0;
+      function show(n) { i = (n + imgs.length) % imgs.length; big.src = imgs[i].dataset.full; }
+      function open(n) { show(n); box.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function close() { box.classList.remove('open'); document.body.style.overflow = ''; }
+      imgs.forEach(function (im, n) { im.parentNode.addEventListener('click', function () { open(n); }); });
+      box.querySelector('.close').addEventListener('click', close);
+      box.querySelector('.prev').addEventListener('click', function (e) { e.stopPropagation(); show(i - 1); });
+      box.querySelector('.next').addEventListener('click', function (e) { e.stopPropagation(); show(i + 1); });
+      box.addEventListener('click', function (e) { if (e.target === box) close(); });
+      addEventListener('keydown', function (e) {
+        if (!box.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(i - 1);
+        if (e.key === 'ArrowRight') show(i + 1);
+      });
+      var x0 = null;
+      box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', function (e) {
+        if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+      });
+    })();
   </script>
 </body>
 </html>
