@@ -160,12 +160,12 @@
     .people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
     .person {
       background: #fff; border: 1px solid var(--line); border-radius: 18px;
-      padding: 2rem 1.7rem 1.8rem; text-align: center;
+      overflow: hidden; text-align: center;
     }
-    .person img {
-      width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.2rem;
-      box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--line);
+    .person > img {
+      display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; margin: 0;
     }
+    .person-body { padding: 1.5rem 1.7rem 1.8rem; }
     .person .role { color: var(--olive); font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; margin: 0; font-weight: 400; }
     .person h4 { color: var(--ink); font-weight: 400; font-size: 1.7rem; margin: .1rem 0 .7rem; letter-spacing: .04em; }
     .person .intro { margin: 0 0 1.2rem; }
@@ -314,7 +314,8 @@
           <h3>Bruden &amp; brudgummen</h3>
           <div class="people-grid">
             <article class="person">
-              <img src="bilder/portratt-matilda.jpg?v=2" alt="Matilda" loading="lazy" width="200" height="200">
+              <img src="bilder/portratt-matilda.jpg?v=4" alt="Matilda" loading="lazy" width="1000" height="750">
+              <div class="person-body">
               <p class="role">Bruden</p>
               <h4>Matilda</h4>
               <p class="intro">Läkare inom akutsjukvården. Smart, kärleksfull och den som alltid vet vad som händer härnäst.</p>
@@ -324,9 +325,11 @@
                 <dt>Älskar</dt><dd>Att få morgonkaffet serverat på sängen.</dd>
                 <dt>Visste du att</dt><dd>Matilda läser väldigt snabbt? Böckerna tog till slut över hemma, så Marcus fick köpa en läsplatta till henne.</dd>
               </dl>
+              </div>
             </article>
             <article class="person">
-              <img src="bilder/portratt-marcus.jpg?v=3" alt="Marcus" loading="lazy" width="200" height="200">
+              <img src="bilder/portratt-marcus.jpg?v=4" alt="Marcus" loading="lazy" width="1000" height="750">
+              <div class="person-body">
               <p class="role">Brudgummen</p>
               <h4>Marcus</h4>
               <p class="intro">Ingenjör som jobbar med robotar. Bryr sig väldigt mycket om människorna runt omkring sig och är snällare än de flesta.</p>
@@ -336,6 +339,7 @@
                 <dt>Älskar</dt><dd>Att servera Matilda morgonkaffe på sängen.</dd>
                 <dt>Visste du att</dt><dd>Marcus knappt drack vin innan vi träffades? Nu är han en riktig vinnörd som bryr sig betydligt mer än Matilda om vilket vin som ska köpas till fredagsmiddagen.</dd>
               </dl>
+              </div>
             </article>
           </div>
         </div>
