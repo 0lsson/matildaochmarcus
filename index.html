@@ -131,7 +131,21 @@
     .lightbox .close { top: .6rem; right: .8rem; }
     .lightbox .prev { left: .4rem; top: 50%; transform: translateY(-50%); }
     .lightbox .next { right: .4rem; top: 50%; transform: translateY(-50%); }
-    .about-text { max-width: 36em; margin: 0 auto; text-align: center; }
+    .about-text { max-width: 34em; margin: 0 auto; }
+    .about-text p { margin: 0 0 1.15rem; }
+    .about-text .opener {
+      text-align: center; font-style: italic; color: var(--olive);
+      font-size: 1.35rem; line-height: 1.45; margin-bottom: 1.8rem;
+    }
+    .about-text .closer { text-align: center; font-style: italic; color: var(--ink); margin-top: 1.8rem; }
+    .milestones {
+      list-style: none; padding: 0; margin: 1.2rem auto 0; width: 100%; max-width: 760px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;
+    }
+    .milestones li { border-top: 1px solid var(--line); padding-top: .9rem; }
+    .milestones .d { display: block; color: var(--olive); letter-spacing: .18em; font-size: .85rem; font-weight: 400; }
+    .milestones .t { display: block; color: var(--ink); font-size: 1.1rem; }
+    @media (max-width: 640px) { .milestones { grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; } }
 
     /* Dagen */
     .events { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
@@ -240,8 +254,20 @@
         </div>
         </div>
         <div class="about-text wrap">
-          <p class="placeholder-note">Här kommer vi snart berätta om hur vi träffades, vad vi gillar att göra tillsammans och varför vi ser fram emot att fira just med er.</p>
+          <p class="opener">Det började, som så många moderna kärlekshistorier, med en högersvep på Tinder.</p>
+          <p>Första dejten blev den 14 mars 2024 på Opizzicato på Södermalm. Matilda kom lite sent (det är förlåtet), och sedan drack vi vatten. Mycket vatten. Glas efter glas, bara för att middagen aldrig skulle ta slut.</p>
+          <p>I juni samma år köpte vi varsin lägenhet, samma vecka. Smidigt, tyckte vi, tills det visade sig att Marcus skulle bli bostadslös i två veckor i övergången. Lösningen kom han själv på: han kunde ju bo hos Matilda i juli. Bara tillfälligt, förstås. Efter en sommar med Gotland och Paris under OS flyttade vi ihop på riktigt den 13 september 2024, i Matildas lägenhet på Södermalm.</p>
+          <p>Sedan dess har det blivit en hel del resor: Grövelsjön, Mallorca och Rom. Vintern därpå bar det av till Funäsdalen och sedan Grövelsjön igen. Den 6 januari 2026 var det 20 minusgrader, vi åkte längdskidor och det fanns inte mycket god mat hemma. Men Marcus hade i smyg köpt med sig Matildas favoritchampagne, och mitt i längdspåret friade han. Svaret blev ja.</p>
+          <p>Som nyförlovade har vi hunnit med Fuerteventura och Marbella med familjen, tre och en halv veckor i Kalifornien (livets resa) och Hawaii för Ironman-VM.</p>
+          <p>Men allra mest uppskattar vi vardagen: mys hemma, träning och tid med familj och vänner. Längs vägen har Marcus lärt sig att gilla vin, inredning, mat och löpning, och Matilda har lärt sig att cykla. Och så blir Matilda bortskämd varje dag av sin blivande make.</p>
+          <p class="closer">Nu ser vi fram emot att fira nästa kapitel tillsammans med er.</p>
         </div>
+        <ul class="milestones">
+          <li><span class="d">14.3.2024</span><span class="t">Första dejten</span></li>
+          <li><span class="d">13.9.2024</span><span class="t">Flyttade ihop</span></li>
+          <li><span class="d">6.1.2026</span><span class="t">Förlovning</span></li>
+          <li><span class="d">4.9.2027</span><span class="t">Bröllop</span></li>
+        </ul>
       </div>
     </div>
   </section>
