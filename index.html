@@ -138,6 +138,19 @@
       font-size: 1.35rem; line-height: 1.45; margin-bottom: 1.8rem;
     }
     .about-text .closer { text-align: center; font-style: italic; color: var(--ink); margin-top: 1.8rem; }
+    .first-photo {
+      float: right; width: 42%; max-width: 270px; margin: .35rem 0 1rem 1.8rem; text-align: center;
+    }
+    .first-photo img {
+      width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px;
+      box-shadow: 0 1px 2px rgba(38,72,35,.08), 0 6px 18px rgba(38,72,35,.08);
+      transform: rotate(1.5deg);
+    }
+    .first-photo figcaption { font-style: italic; color: var(--olive); font-size: .95rem; margin-top: .7rem; line-height: 1.35; }
+    .about-text::after { content: ""; display: block; clear: both; }
+    @media (max-width: 640px) {
+      .first-photo { float: none; width: 72%; margin: .4rem auto 1.8rem; }
+    }
     .milestones {
       list-style: none; padding: 0; margin: 1.2rem auto 0; width: 100%; max-width: 760px;
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;
@@ -255,6 +268,10 @@
         </div>
         <div class="about-text wrap">
           <p class="opener">Det började, som så många moderna kärlekshistorier, med en högersvep på Tinder.</p>
+          <figure class="first-photo">
+            <img src="bilder/forsta-bilden-700.jpg" srcset="bilder/forsta-bilden-700.jpg 525w, bilder/forsta-bilden-1200.jpg 900w" sizes="270px" alt="Matilda och Marcus, första bilden tillsammans" loading="lazy" width="525" height="700">
+            <figcaption>Första bilden på oss tillsammans</figcaption>
+          </figure>
           <p>Första dejten blev den 14 mars 2024 på Opizzicato på Södermalm. Matilda kom lite sent (det är förlåtet), och sedan drack vi vatten. Mycket vatten. Glas efter glas, bara för att middagen aldrig skulle ta slut.</p>
           <p>I juni samma år köpte vi varsin lägenhet, samma vecka. Smidigt, tyckte vi, tills det visade sig att Marcus skulle bli bostadslös i två veckor i övergången. Lösningen kom han själv på: han kunde ju bo hos Matilda i juli. Bara tillfälligt, förstås. Efter en sommar med Gotland och Paris under OS flyttade vi ihop på riktigt den 13 september 2024, i Matildas lägenhet på Södermalm.</p>
           <p>Sedan dess har det blivit en hel del resor: Grövelsjön, Mallorca och Rom. Vintern därpå bar det av till Funäsdalen och sedan Grövelsjön igen. Den 6 januari 2026 var det 20 minusgrader, vi åkte längdskidor och det fanns inte mycket god mat hemma. Men Marcus hade i smyg köpt med sig Matildas favoritchampagne, och mitt i längdspåret friade han. Svaret blev ja.</p>
